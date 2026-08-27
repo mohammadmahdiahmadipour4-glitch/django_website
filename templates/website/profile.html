@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>
+        my profile
+    </h1>
+    {%if is_admin %}
+    <h2> {{name}} {{last_name}} You are admin ! </h2>
+    {%else%}
+    <p>
+        hello my name is {{name}} {{last_name}}
+    </p>
+    {%endif%}
+    <p>
+        i'm student of {{uni}} 
+    </p>
+    <h3>my skils : </h3>
+    <ul style="list-style-type: space-counter ;" >
+        {%for skill in skills %}
+        <li> {{skill}}</li>
+        {%endfor%}
+    </ul>
+    
+</body>
+</html>
