@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Post , User , contact , Tag , Category 
+from .models import Post , User , contact , Tag , Category , Comment
 # Register your models here.
 class postAdmin(admin.ModelAdmin) : 
     list_display = ('title' , 'author' , 'category'  , 'get_tags', 'status' , 'published_date')
@@ -26,3 +26,4 @@ admin.site.register(User)
 admin.site.register(contact)
 admin.site.register(Tag)
 admin.site.register(Category)
+admin.site.register(Comment)

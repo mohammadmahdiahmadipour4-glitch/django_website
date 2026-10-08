@@ -26,11 +26,10 @@ class Category(models.Model):
         return self.name
 
 class Post(models.Model): 
-    author = models.OneToOneField(to=User , on_delete= models.CASCADE ,)
+    author = models.ForeignKey(to=User , on_delete= models.CASCADE ,)
     image = models.ImageField(upload_to='posts/%Y/%m/%d/')
     title = models.CharField(max_length=250)
     content = models.TextField()
-    category = models.CharField(max_length=80)
     counted_view = models.IntegerField(default=0)
     status = models.BooleanField(default=False)
     published_date = models.DateTimeField(null=True , blank=True)
@@ -49,3 +48,19 @@ class contact(models.Model):
     message = models.TextField()
     created_date = models.DateTimeField(auto_now_add=True)
     updated_date = models.DateTimeField(auto_now=True)
+
+class Comment(models.Model): 
+    post = models.ForeignKey(Post , on_delete=models.CASCADE , related_name='comment')
+
+    name = models.CharField(max_length=255)
+    email = models.EmailField()
+    subject = models.CharField(max_length=255, blank=True, null=True)
+    message = models.TextField()
+    is_approved = models.BooleanField(default=False)
+    created_date = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ['-created_date']
+
+    def __str__(self):
+        return f"{self.name} - {self.post.title}" 
